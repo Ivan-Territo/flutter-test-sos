@@ -1,0 +1,24 @@
+name: flutter_login_profile_lesson
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.10.7
+
+dependencies:
+  # dio: Client HTTP per effettuare richieste API (REST)
+  dio: ^5.9.1
+  flutter:
+    sdk: flutter
+  # shared_preferences: Plugin per il salvataggio persistente di dati chiave-valore (Login data)
+  intl: ^0.20.2
+  shared_preferences: ^2.5.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
