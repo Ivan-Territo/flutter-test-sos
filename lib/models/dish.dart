@@ -1,21 +1,30 @@
-class Dish {
-  // TODO: Aggiungi qui le variabili della classe
-  // Suggerimento: guarda la struttura JSON nel README.md
+class Piatto {
+  final String id;
+  final String name;
+  final String price;
+  final String rating;
+  final String image;
 
-  Dish() {
-    // TODO: Inizializza le variabili della classe usando i parametri del costruttore
-  }
+  Piatto({
+    required this.id,
+    required this.name,
+    required this.price,
+    required this.rating,
+    required this.image,
+  });
 
-  factory Dish.fromJson(Map<String, dynamic> json) {
-    return Dish(
-      id: json['id'],
-      piatto: json['piatto'],
-      categoria: json['categoria'],
-      prezzo: json['prezzo'].toDouble(),
-      ingredienti: List<String>.from(json['ingredienti']),
-      isVegan: json['is_vegan'],
-      disponibile: json['disponibile'],
-      urlImmagine: json['url_immagine'],
+  factory Piatto.fromMap(Map<String, dynamic> map) {
+    // Gestiamo sia le chiavi in italiano (dal vecchio modello) che quelle in inglese
+    final String rawImage = map['url_immagine'] ?? map['image'] ?? '';
+    // Se l'immagine è un URL completo o vuota, gestiscila, altrimenti assumi sia un nome file in assets
+    final String imagePath = rawImage.isNotEmpty ? 'assets/plans/$rawImage' : 'assets/plans/placeholder.png';
+
+    return Piatto(
+      id: map['id']?.toString() ?? '',
+      name: map['piatto'] ?? map['name'] ?? 'Nome non disponibile',
+      price: map['prezzo']?.toString() ?? map['price']?.toString() ?? '0.0',
+      rating: map['rating']?.toString() ?? '4.5',
+      image: imagePath,
     );
   }
 }
